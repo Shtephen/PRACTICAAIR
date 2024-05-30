@@ -1,0 +1,69 @@
+﻿<Window x:Class="PRACTICAAIR.Ticket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRACTICAAIR"
+        mc:Ignorable="d"
+        Title="Ticket" Height="450" Width="1200" ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="Black"/>
+
+            <Setter Property="Background" Value="#FF4F00"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" Background="{TemplateBinding Background}" >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#F0F8FF"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#1D1E33">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="54*"/>
+            <RowDefinition Height="307*"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Купленные билеты" HorizontalAlignment="Center" VerticalAlignment="Center" 
+FontWeight="Bold" FontSize="25" Height="45" Width="250" />
+
+        <ListView x:Name="ListViewTicket" Margin="0,1,648,68" Grid.RowSpan="2" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Номер места" Width="Auto" DisplayMemberBinding="{Binding SeatNumber}"/>
+                    <GridViewColumn Header="Класс обслуживания" Width="Auto" DisplayMemberBinding="{Binding ClassService}"/>
+                    <GridViewColumn Header="Статус билета" Width="Auto" DisplayMemberBinding="{Binding TicketStatus}"/>
+                    <GridViewColumn Header="Цена билета" Width="Auto" DisplayMemberBinding="{Binding TicketPrice}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="ListViewPassengers" Margin="352,1,0,68" Grid.Row="1" Grid.RowSpan="2" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Пол пассажира" Width="Auto" DisplayMemberBinding="{Binding Gender}"/>
+                    <GridViewColumn Header="Фамилия" Width="Auto" DisplayMemberBinding="{Binding Surname}"/>
+                    <GridViewColumn Header="Имя" Width="Auto" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Отчество" Width="Auto" DisplayMemberBinding="{Binding Patronumic}"/>
+                    <GridViewColumn Header="Дата рождения" Width="Auto" DisplayMemberBinding="{Binding DateOfBirth}"/>
+                    <GridViewColumn Header="Паспорт" Width="Auto" DisplayMemberBinding="{Binding PassportData}"/>
+                    <GridViewColumn Header="Телефон" Width="Auto" DisplayMemberBinding="{Binding Phone}"/>
+                    <GridViewColumn Header="Электронная почта" Width="Auto" DisplayMemberBinding="{Binding Email}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="CreateStatements" Content="Создать ведомость" FontWeight="Bold" HorizontalAlignment="Left" Grid.Row="2" Margin="42,14,0,13" Width="141"  Click="VedomostButton_Click"/>
+
+    </Grid>
+</Window>
